@@ -26,8 +26,9 @@ const projects = new Command()
   .description("Create a new project")
   .action(createProject);
 
-const boxModel = new EnumType(["SI", "SIV", "SV", "SX"]);
+const boxModel = new EnumType(["starter", "pro", "business", "enterprise"]);
 const boxImages = new EnumType(["ubuntu-20.04"]);
+const boxRegions = new EnumType(["HEL1", "LA1"]);
 
 const boxes = new Command()
   .description("Manage your boxes")
@@ -35,11 +36,14 @@ const boxes = new Command()
   .alias("ls")
   .description("List your boxes")
   .action(listBoxes)
-  .command("create <name:string> <model:boxModel> <image:boxImages>")
+  .command(
+    "create <name:string> <model:boxModel> <image:boxImages> <region:boxRegions>"
+  )
   .type("boxModel", boxModel)
   .type("boxImages", boxImages)
+  .type("boxRegions", boxRegions)
   .description(
-    "Create a new box\nBox Models: SI, SIV, SV, SX\nImages: ubuntu-20.04"
+    "Create a new box\nBox Models: starter, pro, business, enterprise\nImages: ubuntu-20.04\nRegions: LA1, HEL1"
   )
   .action(createBox);
 

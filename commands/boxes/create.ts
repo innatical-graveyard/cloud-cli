@@ -6,7 +6,8 @@ export default async (
   _: unknown,
   name: string,
   model: string,
-  image: string
+  image: string,
+  region: string
 ) => {
   const project = await assertProject();
   const token = await assertToken();
@@ -15,6 +16,7 @@ export default async (
       name,
       model,
       image,
+      region,
     },
     headers: {
       authorization: token,

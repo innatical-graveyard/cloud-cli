@@ -7,7 +7,6 @@ if (!path) {
   Deno.exit(1);
 }
 
-// await Deno.(join(path, "inncloud.datastore"));
 const storage = new Store({
   path,
   name: "inncloud.datastore",

@@ -6,8 +6,9 @@ import loginCommand from "./commands/login.ts";
 import listProjects from "./commands/projects/list.ts";
 import useProject from "./commands/projects/use.ts";
 import createProject from "./commands/projects/create.ts";
-import listBoxes from "./commands/boxes/list.ts";
-import createBox from "./commands/boxes/create.ts";
+import listServer from "./commands/servers/list.ts";
+import createServer from "./commands/servers/create.ts";
+import removeServer from "./commands/servers/remove.ts";
 
 const login = new Command()
   .description("Login using Innatical ID")
@@ -26,26 +27,34 @@ const projects = new Command()
   .description("Create a new project")
   .action(createProject);
 
-const boxModel = new EnumType(["starter", "pro", "business", "enterprise"]);
-const boxImages = new EnumType(["ubuntu-20.04"]);
-const boxRegions = new EnumType(["HEL1", "LA1"]);
+const serverModel = new EnumType(["starter", "pro", "business", "enterprise"]);
+const serverImages = new EnumType(["ubuntu-20.04"]);
+const serverRegions = new EnumType(["HEL1", "LA1"]);
+const billingCycle = new EnumType(["month", "year"]);
 
-const boxes = new Command()
-  .description("Manage your boxes")
+const servers = new Command()
+  .description("Manage your servers")
   .command("list")
   .alias("ls")
-  .description("List your boxes")
-  .action(listBoxes)
+  .description("List your servers")
+  .action(listServer)
   .command(
-    "create <name:string> <model:boxModel> <image:boxImages> <region:boxRegions>"
+    "create <name:string> <model:serverModel> <image:serverImages> <region:serverRegions> <cycle:billingCycle>"
   )
-  .type("boxModel", boxModel)
-  .type("boxImages", boxImages)
-  .type("boxRegions", boxRegions)
+  .type("serverModel", serverModel)
+  .type("serverImages", serverImages)
+  .type("serverRegions", serverRegions)
+  .type("billingCycle", billingCycle)
   .description(
-    "Create a new box\nBox Models: starter, pro, business, enterprise\nImages: ubuntu-20.04\nRegions: LA1, HEL1"
+    "Create a new server\nServer Models: starter, pro, business, enterprise\nImages: ubuntu-20.04\nRegions: LA1, HEL1\nBilling Cycle: month, year"
   )
-  .action(createBox);
+  .action(createServer)
+  .command("remove <name:string>")
+  .alias("rm")
+  .description("Remove a server")
+  .action(removeServer);
+
+const storage = new Command().description("Manage your storage volumes");
 
 try {
   await new Command()
@@ -54,7 +63,8 @@ try {
     .description("The developer native cloud by Innatical")
     .command("login", login)
     .command("projects", projects)
-    .command("boxes", boxes)
+    .command("servers", servers)
+    .command("storage", storage)
     .parse(Deno.args);
 } catch (e) {
   console.log("An error occured: " + e);

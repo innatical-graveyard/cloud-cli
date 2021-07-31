@@ -7,19 +7,25 @@ export default async (
   name: string,
   model: string,
   image: string,
-  region: string
+  region: string,
+  cycle: string
 ) => {
   const project = await assertProject();
   const token = await assertToken();
-  await API.post(`projects/${project}/servers`, {
+  const data = await API.post(`projects/${project}/servers`, {
     json: {
       name,
       model,
       image,
       region,
+      cycle,
     },
     headers: {
       authorization: token,
     },
-  });
+    timeout: false,
+  }).json<{ ip: string }>();
+
+  console.log("Server created with IP " + data.ip);
+  console.log("An invoice due in one day has been sent to your email.");
 };

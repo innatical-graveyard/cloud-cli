@@ -1,6 +1,5 @@
 import API from "../../util/api.ts";
 import { assertToken } from "../../util/auth.ts";
-import { assertProject } from "../../util/project.ts";
 
 export default async (_: unknown, name: string) => {
   const token = await assertToken();

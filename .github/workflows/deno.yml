@@ -35,13 +35,16 @@ jobs:
         run: deno compile --allow-all --target x86_64-unknown-linux-gnu -o inncloud-linux main.ts
 
       - name: Compile Windows
-        run: deno compile --allow-all --target x86_64-pc-windows-msvc -o inncloud-windows main.ts
+        run: deno compile --allow-all --target x86_64-pc-windows-msvc -o inncloud-windows.exe main.ts
 
       - name: Compile macOS
         run: deno compile --allow-all --target x86_64-apple-darwin -o inncloud-macos main.ts
 
       - name: Compile macOS ARM
         run: deno compile --allow-all --target aarch64-apple-darwin -o inncloud-macos-arm main.ts
+
+      - name: Awooooo
+        run: ls
 
       - name: Upload Inncloud Linux
         uses: actions/upload-artifact@v2.2.4
@@ -53,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           name: Inncloud Windows
-          path: inncloud-windows
+          path: inncloud-windows.exe
 
       - name: Upload Inncloud macOS
         uses: actions/upload-artifact@v2.2.4
@@ -73,6 +76,6 @@ jobs:
         with:
           files: |
             inncloud-linux
-            inncloud-windows
+            inncloud-windows.exe
             inncloud-macos
             inncloud-macos-arm

@@ -12,10 +12,15 @@ import removeServer from "./commands/servers/remove.ts";
 import listKeys from "./commands/keys/list.ts";
 import removeKey from "./commands/keys/remove.ts";
 import uploadKey from "./commands/keys/upload.ts";
+import tokenCommand from "./commands/token.ts";
 
 const login = new Command()
   .description("Login using Innatical ID")
   .action(loginCommand);
+
+const token = new Command()
+  .description("Output your auth token")
+  .action(tokenCommand);
 
 const projects = new Command()
   .description("Manage your projects")
@@ -77,6 +82,7 @@ try {
     .version("0.1.0")
     .description("The developer native cloud by Innatical")
     .command("login", login)
+    .command("token", token)
     .command("projects", projects)
     .command("servers", servers)
     // .command("storage", storage)

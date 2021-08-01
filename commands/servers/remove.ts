@@ -24,5 +24,6 @@ export default async (_: unknown, name: string) => {
     headers: {
       authorization: token,
     },
+    timeout: false,
   });
 };

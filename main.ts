@@ -57,8 +57,6 @@ const servers = new Command()
   .description("Remove a server")
   .action(removeServer);
 
-// const storage = new Command().description("Manage your storage volumes");
-
 const keys = new Command()
   .description("Manage your keys")
   .command("list")

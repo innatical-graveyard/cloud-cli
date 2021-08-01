@@ -70,4 +70,13 @@ jobs:
         with:
           name: Inncloud macOS ARM
           path: inncloud-macos-arm
-
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            inncloud-linux
+            inncloud-windows.exe
+            inncloud-macos
+            inncloud-macos-arm

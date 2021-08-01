@@ -54,7 +54,21 @@ const servers = new Command()
   .description("Remove a server")
   .action(removeServer);
 
-const storage = new Command().description("Manage your storage volumes");
+// const storage = new Command().description("Manage your storage volumes");
+
+const keys = new Command()
+  .description("Manage your keys")
+  .command("list")
+  .alias("ls")
+  .description("List your keys")
+  .action()
+  .command("remove")
+  .alias("rm")
+  .description("Remove a key")
+  .action()
+  .command("upload")
+  .description("Upload a key")
+  .action();
 
 try {
   await new Command()
@@ -64,7 +78,8 @@ try {
     .command("login", login)
     .command("projects", projects)
     .command("servers", servers)
-    .command("storage", storage)
+    // .command("storage", storage)
+    .command("keys", keys)
     .parse(Deno.args);
 } catch (e) {
   console.log("An error occured: " + e);

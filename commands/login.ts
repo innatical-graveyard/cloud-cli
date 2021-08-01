@@ -24,7 +24,7 @@ export default async () => {
   });
 
   console.log(
-    "Login at https://id.innatical.com/connect?callback=http://localhost:8080"
+    "Login at https://id.innatical.com/connect?callback=http://localhost:8080",
   );
   await app.listen({ port: 8080 });
 };

@@ -12,7 +12,7 @@ export default async (_: unknown, name: string) => {
   }).json<{ id: string; name: string; model: string; ip: string }[]>();
 
   const server = servers.find(
-    (server) => server.id === name || server.name === name
+    (server) => server.id === name || server.name === name,
   );
 
   if (!server) {
@@ -24,6 +24,5 @@ export default async (_: unknown, name: string) => {
     headers: {
       authorization: token,
     },
-    timeout: false,
   });
 };

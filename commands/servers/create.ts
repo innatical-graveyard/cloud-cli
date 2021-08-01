@@ -8,7 +8,7 @@ export default async (
   model: string,
   image: string,
   region: string,
-  cycle: string
+  cycle: string,
 ) => {
   const project = await assertProject();
   const token = await assertToken();

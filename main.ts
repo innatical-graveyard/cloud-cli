@@ -9,6 +9,9 @@ import createProject from "./commands/projects/create.ts";
 import listServer from "./commands/servers/list.ts";
 import createServer from "./commands/servers/create.ts";
 import removeServer from "./commands/servers/remove.ts";
+import listKeys from "./commands/keys/list.ts";
+import removeKey from "./commands/keys/remove.ts";
+import uploadKey from "./commands/keys/upload.ts";
 
 const login = new Command()
   .description("Login using Innatical ID")
@@ -61,14 +64,14 @@ const keys = new Command()
   .command("list")
   .alias("ls")
   .description("List your keys")
-  .action()
-  .command("remove")
+  .action(listKeys)
+  .command("remove <name:string>")
   .alias("rm")
   .description("Remove a key")
-  .action()
-  .command("upload")
+  .action(removeKey)
+  .command("upload <name:string> <path:string>")
   .description("Upload a key")
-  .action();
+  .action(uploadKey);
 
 try {
   await new Command()

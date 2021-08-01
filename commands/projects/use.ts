@@ -11,7 +11,7 @@ export default async (_: unknown, name: string) => {
   }).json<{ id: string; name: string }[]>();
 
   const project = projects.find(
-    (project) => project.id === name || project.name === name
+    (project) => project.id === name || project.name === name,
   );
 
   if (!project) {

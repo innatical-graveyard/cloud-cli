@@ -13,6 +13,9 @@ import listKeys from "./commands/keys/list.ts";
 import removeKey from "./commands/keys/remove.ts";
 import uploadKey from "./commands/keys/upload.ts";
 import tokenCommand from "./commands/token.ts";
+import listMembers from "./commands/members/list.ts";
+import addMember from "./commands/members/add.ts";
+import removeMember from "./commands/members/remove.ts";
 
 const login = new Command()
   .description("Login using Innatical ID")
@@ -76,6 +79,20 @@ const keys = new Command()
   .description("Upload a key")
   .action(uploadKey);
 
+const members = new Command()
+  .description("Manage members")
+  .command("list")
+  .alias("ls")
+  .description("List members")
+  .action(listMembers)
+  .command("add <username:string>")
+  .description("Add member")
+  .action(addMember)
+  .command("remove <username:string>")
+  .alias("rm")
+  .description("Remove member")
+  .action(removeMember);
+
 try {
   await new Command()
     .name("inncloud")
@@ -85,6 +102,7 @@ try {
     .command("token", token)
     .command("projects", projects)
     .command("servers", servers)
+    .command("members", members)
     // .command("storage", storage)
     .command("keys", keys)
     .parse(Deno.args);

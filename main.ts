@@ -57,7 +57,7 @@ const servers = new Command()
   .type("serverRegions", serverRegions)
   .type("billingCycle", billingCycle)
   .description(
-    "Create a new server\nServer Models: starter, pro, business, enterprise\nImages: ubuntu-20.04\nRegions: LA1, HEL1\nBilling Cycle: month, year"
+    "Create a new server\nServer Models: starter, pro, business, enterprise\nImages: ubuntu-20.04, debian-10\nRegions: LA1, HEL1\nBilling Cycle: month, year"
   )
   .action(createServer)
   .command("remove <name:string>")

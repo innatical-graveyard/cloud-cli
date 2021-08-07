@@ -39,7 +39,7 @@ const projects = new Command()
   .action(createProject);
 
 const serverModel = new EnumType(["starter", "pro", "business", "enterprise"]);
-const serverImages = new EnumType(["ubuntu-20.04"]);
+const serverImages = new EnumType(["ubuntu-20.04", "debian-10"]);
 const serverRegions = new EnumType(["HEL1", "LA1"]);
 const billingCycle = new EnumType(["month", "year"]);
 

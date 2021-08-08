@@ -40,7 +40,7 @@ const projects = new Command()
 
 const serverModel = new EnumType(["starter", "pro", "business", "enterprise"]);
 const serverImages = new EnumType(["ubuntu-20.04", "debian-10"]);
-const serverRegions = new EnumType(["HEL1", "LA1"]);
+const serverRegions = new EnumType(["HEL1"]);
 const billingCycle = new EnumType(["month", "year"]);
 
 const servers = new Command()
@@ -57,7 +57,7 @@ const servers = new Command()
   .type("serverRegions", serverRegions)
   .type("billingCycle", billingCycle)
   .description(
-    "Create a new server\nServer Models: starter, pro, business, enterprise\nImages: ubuntu-20.04, debian-10\nRegions: LA1, HEL1\nBilling Cycle: month, year"
+    "Create a new server\nServer Models: starter, pro, business, enterprise\nImages: ubuntu-20.04, debian-10\nRegions: HEL1\nBilling Cycle: month, year"
   )
   .action(createServer)
   .command("remove <name:string>")
